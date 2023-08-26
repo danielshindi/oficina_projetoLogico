@@ -45,9 +45,9 @@ create table workTeam(
 	idWorkTeam int primary key
     );
 
+drop table mechanic;
 create table mechanic(
 	idMechanic int auto_increment,
-    mIdWorkteam int,
     mechanicName varchar(255) not null,
     mechanicAdress varchar(255) not null,
     mechanicContact varchar(11) not null,
@@ -57,9 +57,16 @@ create table mechanic(
                            'Eletrônica embarcada',
                            'Funelaria',
                            'Câmbio',
-                           'Suspensão'),
-	primary key (idMechanic, mIdWorkteam),
-    constraint fk_mechanic_workteam foreign key (mIdWorkteam) references workTeam(idWorkTeam)    
+                           'Suspensão',
+                           'Pintura'),
+	primary key (idMechanic)      
+    );
+    
+create table team_mechanic(
+	tmIdMechanic int,
+    tmIdWorkTeam int,
+    constraint fk_team_mechanic foreign key (tmIdMechanic) references mechanic(idMechanic),
+    constraint fk_mechanic_team foreign key (tmIdWorkTeam) references workTeam(idWorkTeam)
     );
 
 create table requests(

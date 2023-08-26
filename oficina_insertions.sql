@@ -48,12 +48,69 @@ insert into part(partName, partCost)
           
 insert into workTeam values (1),(2),(3),(4),(5);
 
-insert into mechanic(mIdWorkteam, mechanicName, mechanicAdress, mechanicContact, mechanicSpecialty)
-	values(1,'Gerson Mendes', 'Rua tal, 123', '41995859684','Freios'),
-		  (1,'Amanda Souza', 'Rua etc, 543', '41876659684','Direção'),
-          (1,'Rodolfo Santos', 'Rua tal, 11223', '45994859684','Motor'),
-          (1,'Amélia Pereira', 'Rua tal, 12433', '46794859684','Eletrônica embarcada'),
-          (1,'Aluisio Pinto', 'Rua da glória, 123', '5694859684','Funelaria'),
-          (1,'Gerson Mendes', 'Rua tal, 123', '41994859684','Câmbio'),
-          (1,'Gerson Mendes', 'Rua tal, 123', '41994859684','Suspensão'),
-          (2,'Alicia Assunção', 'Rua fulano, 32', '41994854545','Freios'),;
+insert into mechanic(mechanicName, mechanicAdress, mechanicContact, mechanicSpecialty)
+	values('Gerson Mendes', 'Rua tal, 123', '41995859684','Freios'),
+		  ('Amanda Souza', 'Rua etc, 543', '41876659684','Direção'),
+          ('Rodolfo Santos', 'Rua tal, 11223', '45994859684','Motor'),
+          ('Amélia Pereira', 'Rua tal, 12433', '46794859684','Eletrônica embarcada'),
+          ('Aluisio Pinto', 'Rua da glória, 123', '5694859684','Funelaria'),
+          ('Gerson Mendes', 'Rua tal, 123', '41994859684','Câmbio'),
+          ('Gerson Mendes', 'Rua tal, 123', '41994859684','Suspensão'),          
+          ('Roberta Assunção', 'Rua fulano, 32', '4198947545','Pintura'),
+          ('Alicia Assunção', 'Rua fulano, 32', '41994854545','Funelaria'),          
+          ('Roberto Martins', 'Rua fulano, 56', '41994854545','Freios'),          
+          ('Jéssica Nunes', 'Rua Heráclito, 1047', '41993354545','Motor'),          
+          ('Indiana Jones', 'Rua esmeralda, 100', '41894854545','Eletrônica embarcada'),          
+          ('José Silva', 'Rua Chagas, 542', '41994854599','Câmbio');
+ 
+select * from mechanic; 
+insert into team_mechanic values (1, 1),
+								 (2, 1),
+                                 (3, 1),
+                                 (4, 1),
+                                 (5, 1),
+                                 (6, 1),
+                                 (7, 1),
+                                 (8, 2),
+                                 (9, 2),
+                                 (10, 3),
+                                 (1, 3),
+                                 (12, 4),
+                                 (4, 4),
+                                 (13, 5),
+                                 (6, 5),
+                                 (11, 5);
+                                 
+select * from team_mechanic;
+
+select * from service;
+insert into requests values (1,1,1),
+							(2,2,9),
+                            (3,3,4),
+                            (4,4,10),
+                            (5,5,2),
+                            (5,5,7),
+                            (5,5,8),
+                            (5,5,5);
+                            
+insert into service_has_parts values (1,4,1),
+									 (1,8,1),
+                                     (1,9,1),
+                                     (2,4,1),
+                                     (3,3,4),
+                                     (4,1,2),
+                                     (4,2,1),
+                                     (5,5,1),
+                                     (5,6,1),
+                                     (6,7,4),
+                                     (7,8,1),
+                                     (8,9,1),
+                                     (9,10,3),
+                                     (10,11,1);
+                                     
+insert into executed values (1,1),
+						    (2,2),
+							(3,3),
+                            (4,4),
+                            (5,5),
+                            (6,2);
