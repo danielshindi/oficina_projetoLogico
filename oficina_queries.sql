@@ -39,8 +39,8 @@ select r.requestIdWorkorder as WorkOrder, round(SUM(TotalCost),2) as Total
 	group by r.requestIdWorkorder
     order by requestIdWorkorder;
          
--- Recuperar valor total a pagar por veículo        
-select distinct requestIdVehicle as Veiculo, Total
+-- Recuperar valor total a pagar por veículo e por ordem       
+select distinct requestIdVehicle as Veiculo, requestIdWorkorder as WorkOrder, Total
 from requests r
 inner join (select r.requestIdWorkorder as WorkOrder, round(SUM(TotalCost),2) as Total
 			from (requests r inner join service s on s.idService = r.requestIdService
@@ -51,8 +51,8 @@ inner join (select r.requestIdWorkorder as WorkOrder, round(SUM(TotalCost),2) as
 							on s.idService = TotalServiceCost.idService)
 							group by r.requestIdWorkorder
 							order by requestIdWorkorder) as TotalDeCadaOrdem
-on requestIdWorkorder = TotalDeCadaOrdem.WorkOrder;
-
+on requestIdWorkorder = TotalDeCadaOrdem.WorkOrder
+order by Veiculo;
 
 -- Recuperar cliente, veículo e respectivas ordens de serviços
 select idCustomer, completeName, CPF, idVehicle, licensePlate, model, requestIdWorkorder as WorkOrder
@@ -71,9 +71,11 @@ inner join (select * from team_mechanic where tmIdWorkTeam = (select xIdWorkteam
 												  where requestIdVehicle = 3)) as mechanics_3
 on idMechanic = tmIdMechanic;
 
--- 
+-- Recupera ordens de serviço agrupado por status com contagem maior que um
 select orderStatus, count(*) as Numero_de_ordens
 from workorder
-group by orderStatus; 
+group by orderStatus
+having Numero_de_ordens > 1; 
 
-select * from workorder;
+-- Recuperar ordens de serviço com data de entrega anterior a 30 de agosto de 2023
+select * from workorder where deliveryDate < '2023-08-30' order by deliveryDate desc;
